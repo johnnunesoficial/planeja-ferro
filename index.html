@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Planeja Ferro | Estilo Industrial</title>
+    
+    <metaname = ""google-site-verification" content = "MTzbR_JGwDSr-14mI1Lzcwg_Obdhqf_psgBeRhkTnIk" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --verde-petroleo: #081413;
+            --verde-card: #0D211F;
+            --amarelo-lima: #D4E157;
+            --branco: #F2F2F2;
+            --divider: rgba(212, 225, 87, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--verde-petroleo);
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR & MENU */
+        .navbar {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(8, 20, 19, 0.98);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 25px; z-index: 10000; border-bottom: 1px solid var(--divider);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo { font-family: 'Archivo Black'; font-size: 1rem; color: var(--amarelo-lima); letter-spacing: 1px; }
+        
+        .menu-icon { 
+            font-size: 1.6rem; 
+            color: var(--amarelo-lima); 
+            cursor: pointer; 
+            z-index: 10001;
+            transition: 0.3s ease;
+        }
+        .menu-icon i { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .menu-icon.active i { transform: rotate(180deg); }
+        
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); opacity: 0; visibility: hidden;
+            transition: 0.4s; z-index: 9998; backdrop-filter: blur(3px);
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        .nav-menu {
+            position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+            background: var(--verde-card); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            padding: 100px 30px; display: flex; flex-direction: column; gap: 30px; z-index: 9999;
+            border-left: 1px solid var(--divider); box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+        .nav-menu.active { right: 0; }
+        .nav-menu a { color: var(--branco); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; font-family: 'Archivo Black'; }
+
+        header { padding: 120px 20px 50px; text-align: center; }
+        .logo-img { width: 110px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(212, 225, 87, 0.2)); }
+        
+        .header-divider {
+            height: 1px; width: 60px; background: var(--amarelo-lima);
+            margin: 0 auto 20px; opacity: 0.4;
+        }
+
+        h1 { font-family: 'Archivo Black'; font-size: 2.4rem; line-height: 1; text-transform: uppercase; margin-bottom: 8px; }
+        .subtitle { font-size: 0.75rem; letter-spacing: 6px; color: var(--amarelo-lima); text-transform: uppercase; opacity: 0.9; }
+
+        .section-divider {
+            height: 1px; width: 80%; margin: 50px auto;
+            background: linear-gradient(90deg, transparent, var(--amarelo-lima), transparent);
+            opacity: 0.2;
+        }
+
+        section { padding: 30px 0; }
+        .container-title { padding: 0 25px; margin-bottom: 25px; }
+        h2 { font-family: 'Archivo Black'; font-size: 1.6rem; text-transform: uppercase; letter-spacing: -0.5px; display: flex; align-items: center; gap: 12px; }
+        h2::before { content: ''; width: 4px; height: 24px; background: var(--amarelo-lima); display: inline-block; border-radius: 2px; }
+        
+        h3 { font-family: 'Archivo Black'; font-size: 1.1rem; color: var(--branco); text-transform: uppercase; margin-bottom: 15px; opacity: 0.9; }
+
+        /* CARROSSÉIS FOTOS */
+        .splide__slide img { 
+            width: 100%; 
+            height: 420px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            border: 2px solid rgba(212, 225, 87, 0.4); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* SOBRE NÓS */
+        .about-card {
+            background: var(--verde-card); padding: 30px 25px; margin: 0 20px; border-radius: 12px; border: 1px solid var(--divider); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .about-text { font-size: 0.95rem; line-height: 1.6; color: #cbd5e0; margin-bottom: 30px; }
+        .about-grid { display: grid; gap: 25px; }
+        .about-item h3 { font-family: 'Archivo Black'; font-size: 0.85rem; color: var(--amarelo-lima); text-transform: uppercase; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .about-item h3 i { font-size: 1rem; }
+        .about-item ul { list-style: none; }
+        .about-item li { font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+        .about-item li::before { content: '▹'; color: var(--amarelo-lima); font-weight: bold; }
+
+        /* GALERIA VÍDEOS */
+        .video-scroll { display: flex; overflow-x: auto; gap: 18px; padding: 0 20px 30px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .video-scroll::-webkit-scrollbar { display: none; }
+        .video-card { min-width: 82vw; height: 520px; background: #000; border-radius: 12px; overflow: hidden; scroll-snap-align: center; position: relative; border: 1px solid var(--divider); box-shadow: 0 15px 35px rgba(0,0,0,0.4); cursor: pointer; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .video-card .tag-live { position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.6); color: var(--amarelo-lima); padding: 6px 12px; font-size: 0.65rem; font-weight: 800; border-radius: 30px; border: 1px solid var(--amarelo-lima); backdrop-filter: blur(5px); z-index: 5; }
+
+        /* MODAL DE VÍDEO */
+        #videoModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; z-index: 999999; align-items: center; justify-content: center;
+        }
+        #videoModal.active { display: flex; }
+        #modalVideoPlayer { width: 100%; height: 100%; object-fit: cover; }
+        .modal-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; pointer-events: none; z-index: 1000001; }
+        .nav-btn { width: 45px; height: 45px; background: rgba(0,0,0,0.3); color: #fff; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: auto; cursor: pointer; font-size: 1.2rem; }
+        .close-modal-btn { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; font-size: 20px; display: flex; align-items: center; justify-content: center; z-index: 1000002; cursor: pointer; }
+
+        /* AVALIAÇÕES */
+        .avalia-header { text-align: center; margin-bottom: 30px; }
+        .review-card { background: var(--verde-card); padding: 25px; border-radius: 8px; margin: 0 25px 15px; border: 1px solid var(--divider); }
+        .review-card strong { color: var(--amarelo-lima); display: block; margin-bottom: 10px; font-size: 1.1rem; }
+        .review-card p { font-size: 0.9rem; line-height: 1.5; color: #cbd5e0; }
+        .stars { color: #FFD700; font-size: 0.8rem; margin-bottom: 5px; display: block; }
+
+        /* HORÁRIOS */
+        .hours-container { background: var(--verde-card); padding: 25px; border-radius: 8px; margin: 0 25px 30px; border: 1px solid var(--divider); }
+        .hours-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+        .hours-row:last-child { border-bottom: none; }
+        .day-name { font-weight: 700; color: var(--amarelo-lima); }
+
+        /* RODAPÉ E MAPA */
+        footer { padding: 50px 25px 100px; background: #040a09; text-align: center; border-top: 1px solid var(--divider); }
+        .map-frame { width: 100%; height: 280px; border-radius: 12px; border: 1px solid var(--divider); margin: 25px 0; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 30px 0; }
+        .social-icons a { color: var(--branco); font-size: 1.7rem; transition: 0.3s; }
+        .social-icons a:hover { color: var(--amarelo-lima); }
+
+        /* BOTÕES FLUTUANTES COM PULSE */
+        .floating-social {
+            position: fixed; bottom: 30px; right: 20px;
+            display: flex; flex-direction: column; gap: 15px; z-index: 99999;
+        }
+        .float-btn {
+            width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: #fff; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+            animation: pulse-float 2s infinite ease-in-out;
+        }
+        .float-insta { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .float-wpp { background: #25d366; animation-delay: 0.5s; }
+        
+        @keyframes pulse-float {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 225, 87, 0.4); }
+            70% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(212, 225, 87, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 225, 87, 0); }
+        }
+
+        /* BOTÃO DE ORÇAMENTO ANIMADO */
+        .budget-section { text-align: center; padding: 40px 20px; }
+        .btn-budget-animated {
+            display: inline-block; background: var(--amarelo-lima); color: var(--verde-petroleo); padding: 22px 45px; border-radius: 15px; text-decoration: none; font-family: 'Archivo Black'; font-size: 1.1rem; text-transform: uppercase; box-shadow: 0 0 20px rgba(212, 225, 87, 0.4); animation: pulse-budget 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-budget {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 225, 87, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 225, 87, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 225, 87, 0); }
+        }
+
+        .closed { color: #ff4444; }
+
+        .footer-info { font-size: 0.75rem; opacity: 0.5; margin-top: 40px; letter-spacing: 1px; }
+        .signature { 
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            margin-top: 12px; font-size: 0.8rem; color: var(--branco); opacity: 0.8; text-decoration: none;
+        }
+        .signature i { color: var(--amarelo-lima); font-size: 1rem; }
+
+        /* NOVAS SEÇÕES: PORTÕES E NR12 */
+        .img-card {
+            min-width: 82vw; height: 520px; background: #000; border-radius: 12px; overflow: hidden; scroll-snap-align: center; position: relative; border: 1px solid var(--amarelo-lima); box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        .img-card img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        
+        .faixa-zebrada {
+            height: 12px; width: 100%;
+            background: repeating-linear-gradient(
+                -45deg,
+                #000,
+                #000 15px,
+                var(--amarelo-lima) 15px,
+                var(--amarelo-lima) 30px
+            );
+            animation: moveStripe 3s linear infinite;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        @keyframes moveStripe {
+            0% { background-position: 0 0; }
+            100% { background-position: 60px 0; }
+        }
+                  
+        .nr12-bg {
+            background: radial-gradient(circle at center, #0a1c1a 0%, var(--verde-petroleo) 100%);
+            padding-top: 40px; padding-bottom: 40px;
+        }
+        .nr-title-container { text-align: center; padding: 0 20px; margin-bottom: 30px; }
+        .nr-badge {
+            display: inline-block; background: rgba(212, 225, 87, 0.1); color: var(--amarelo-lima); border: 1px solid var(--amarelo-lima); padding: 8px 16px; border-radius: 30px; font-family: 'Archivo Black'; font-size: 0.85rem; margin-bottom: 15px; letter-spacing: 1px;
+        }
+        .nr-desc { font-size: 0.9rem; color: #cbd5e0; line-height: 1.5; margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">PLANEJA FERRO</div>
+        <div class="menu-icon" id="menuIcon" onclick="toggleMenu()"><i class="fas fa-bars-staggered"></i></div>
+    </nav>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <div class="nav-menu" id="navMenu">
+        <a href="#home" onclick="toggleMenu()">Início</a>
+        <a href="#fotos" onclick="toggleMenu()">Projetos | Imagens</a>
+        <a href="#videos" onclick="toggleMenu()">Nosso Portfólio | Vídeos</a>
+        <a href="#fabrica" onclick="toggleMenu()">A Fábrica</a>
+        <a href="#sobre" onclick="toggleMenu()">Sobre Nós</a> 
+        <a href="#avaliacoes" onclick="toggleMenu()">Avaliações</a>
+        <a href="#local" onclick="toggleMenu()">Localização</a>
+    </div>
+
+    <div class="floating-social">
+        <a href="https://www.instagram.com/planejaferro/" target="_blank" class="float-btn float-insta"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5511986548759?text=Olá, gostaria de solicitar um orçamento." target="_blank" class="float-btn float-wpp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <header id="home">
+        <img src="logo.png" alt="Logo Planeja Ferro" class="logo-img">
+        <div class="header-divider"></div>
+        <h1>PLANEJA FERRO</h1>
+        <p class="subtitle">Design Industrial Sob Medida</p>
+    </header>
+
+    <section id="fotos">
+        <div class="container-title"><h2>CONHEÇA OS NOSSOS PROJETOS | IMAGENS</h2></div>
+        <div class="splide" id="galeria1">
+            <div class="splide__track"><ul class="splide__list">
+                <script>for(let i=1; i<=16; i++){ document.write(`<li class="splide__slide"><a href="foto${i}.png" class="glightbox" data-gallery="f1"><img src="foto${i}.png"></a></li>`); }</script>
+            </ul></div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="videos">
+        <div class="container-title"><h2>ORÇAMENTOS ENTREGUES | VÍDEOS</h2></div>
+        <div class="video-scroll">
+            <div class="video-card" onclick="openVideoModal(0, 'portfolio')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nossosprojetos1.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(1, 'portfolio')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nossosprojetos2.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(2, 'portfolio')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nossosprojetos3.mp4" loop muted playsinline autoplay></video>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="portoes">
+        <div class="container-title">
+            <h2>NOSSOS PROJETOS | PORTÕES</h2>
+            <p class="subtitle" style="margin-top: 10px; font-size: 0.8rem; text-transform: none; letter-spacing: 0.5px; color: #cbd5e0; line-height: 1.4;">
+                <i class="fas fa-check-circle" style="color: var(--amarelo-lima); margin-right: 5px;"></i> Também somos especialistas em projeção, fabricação e reforma de portões sob medida.
+            </p>
+        </div>
+        <div class="video-scroll">
+            <div class="video-card" onclick="openVideoModal(0, 'portoes')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="portoes1.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(1, 'portoes')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="portoes2.mp4" loop muted playsinline autoplay></video>
+            </div>
+            
+            <div class="img-card">
+                <img src="portoescertificado.png" alt="Certificado Portões Planeja Ferro">
+            </div>
+
+            <div class="video-card" onclick="openVideoModal(2, 'portoes')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="portoes3.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(3, 'portoes')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="portoes4.mp4" loop muted playsinline autoplay></video>
+            </div>
+        </div>
+    </section>
+
+    <div class="faixa-zebrada"></div>
+
+    <section id="nr12" class="nr12-bg">
+        <div class="nr-title-container">
+            <div class="nr-badge">🦺 PROTEÇÃO NR12</div>
+            <h2 style="justify-content: center; text-align: center; font-size: 1.2rem; margin-bottom: 15px;">
+                Mais segurança para a sua empresa!
+            </h2>
+            <p class="nr-desc">
+                Especialistas em proteção de máquinas e áreas industriais conforme a norma <strong>NR12</strong>. Adequação e segurança total para o seu ambiente de trabalho.
+            </p>
+        </div>
+        
+        <div class="video-scroll">
+            <div class="video-card" onclick="openVideoModal(0, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr1.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(1, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr2.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(2, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr3.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(3, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr4.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(4, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr5.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(5, 'nr12')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nr6.mp4" loop muted playsinline autoplay></video>
+            </div>
+        </div>
+    </section>
+
+    <div class="faixa-zebrada"></div>
+
+    <div class="section-divider"></div>
+
+    <section id="fabrica">
+        <div class="container-title"><h2>PROFISSIONAIS QUALIFICADOS | ESTRUTURA DE PONTA</h2></div>
+        <div class="video-scroll">
+            <div class="video-card" onclick="openVideoModal(0, 'fabrica')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nossaestrutura1.mp4" loop muted playsinline autoplay></video>
+            </div>
+            <div class="video-card" onclick="openVideoModal(1, 'fabrica')">
+                <span class="tag-live">VER EM TELA CHEIA 📱</span>
+                <video src="nossaestrutura2.mp4" loop muted playsinline autoplay></video>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="container-title"><h2>Sobre a Empresa</h2></div>
+        <div class="about-card">
+            <p class="about-text">
+                <i class="fas fa-industry" style="color: var(--amarelo-lima); margin-right: 10px;"></i>
+                A <strong>Planeja Ferro®</strong> é especializada na fabricação de móveis personalizados e decorativos no estilo industrial. Com produção própria, a empresa garante maior controle de qualidade e entrega soluções sob medida, de acordo com a necessidade de cada cliente. Atende tanto a região de Mauá quanto todo o Brasil, realizando envios para diferentes localidades.
+            </p>
+
+            <div class="about-grid">
+                <div class="about-item">
+                    <h3><i class="fas fa-tools"></i> Principais Serviços</h3>
+                    <ul>
+                        <li>Fabricação de móveis sob medida</li>
+                        <li>Produção de móveis decorativos</li>
+                        <li>Projetos no estilo industrial</li>
+                        <li>Projeção, fabricação e reforma de portões, grades, mezaninos, telhados e proteções de máquinas conforme NR12 e tudo sob medida.</li>
+                        <li>Adequação de segurança e proteção (Norma NR12)!</li>
+                        <li>Personalização conforme a necessidade do cliente</li>
+                    </ul>
+                </div>
+
+                <div class="about-item">
+                    <h3><i class="fas fa-truck-fast"></i> Área de Atendimento</h3>
+                    <ul>
+                        <li>Mauá e região</li>
+                        <li>Envio para todo o Brasil</li>
+                    </ul>
+                </div>
+
+                <div class="about-item">
+                    <h3><i class="fas fa-award"></i> Diferenciais</h3>
+                    <ul>
+                        <li>Fabricação própria</li>
+                        <li>Alto nível de personalização</li>
+                        <li>Estilo industrial moderno</li>
+                        <li>Atendimento direto com o fabricante</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="avaliacoes">
+        <div class="avalia-header">
+            <img src="avalia.png" style="width: 270px; margin-bottom: 55px;">
+            <div class="container-title"><h2>Avaliações do Google</h2></div>
+        </div>
+
+        <div class="review-card">
+            <span class="stars">★★★★★</span>
+            <strong>Denise Spinelli</strong>
+            <p>Super recomendo, excelente trabalho, sem enrolação, executaram o serviço no dia seguinte do orçamento e preço justo. Outro diferencial importante, colocou chave tetra sem nem ter sido combinado, o que aumenta a segurança do salão, só elogios... Eterna gratidão!</p>
+        </div>
+
+        <div class="review-card">
+            <span class="stars">★★★★★</span>
+            <strong>Dalmo Vieira</strong>
+            <p>Melhor serralheria da região, trabalho perfeito, pessoas competentes, preço justo. Super indico pessoal. Obrigado pelo trabalho lindo realizado na minha casa. #Gratidão</p>
+        </div>
+
+        <div class="review-card">
+            <span class="stars">★★★★★</span>
+            <strong>Tiago Castro</strong>
+            <p>Atendimento nota 10 e serviço de qualidade!! Bem atenciosos e trabalham muito bem!</p>
+        </div>
+
+        <div class="review-card">
+            <span class="stars">★★★★★</span>
+            <strong>Mine Girl</strong>
+            <p>Atendimento impecável, precisei de um orçamento e o Rodrigo já veio em minha casa fez as medidas e já montou o projeto, tudo com muito caprixo, a entrega foi bem mais rápido do que eu esperava, profissionais muito bem capacitados! Só tenho a agradecer pelo trabalho de vcs!! Estou super satisfeita...</p>
+        </div>
+
+        <div class="review-card">
+            <span class="stars">★★★★★</span>
+            <strong>George Sousa Rolim</strong>
+            <p>Entrega no prazo, e serviço de muita qualidade... Todos aqui em casa amamos!!!</p>
+</div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="horarios">
+        <div class="container-title"><h2>Funcionamento</h2></div>
+        <div class="hours-container">
+            <div class="hours-row"><span class="day-name">Segunda-feira</span><span>08:00 – 17:00</span></div>
+            <div class="hours-row"><span class="day-name">Terça-feira</span><span>08:00 – 17:00</span></div>
+            <div class="hours-row"><span class="day-name">Quarta-feira</span><span>08:00 – 17:00</span></div>
+            <div class="hours-row"><span class="day-name">Quinta-feira</span><span>08:00 – 17:00</span></div>
+            <div class="hours-row"><span class="day-name">Sexta-feira</span><span>08:00 – 17:00</span></div>
+            <div class="hours-row"><span class="day-name">Sábado</span><span>08:00 – 12:00</span
+            ></div>
+            <div class="hours-row"><span class="day-name">Domingo</span><span class="closed">Fechado</span></div>
+        </div>
+    </section>
+
+    <div class="budget-section">
+        <a href="https://wa.me/5511986548759?text=Olá, gostaria de solicitar um orçamento." target="_blank" class="btn-budget-animated">Solicitar um orçamento.</a>
+    </div>
+
+    <footer id="local">
+        <div class="container-title" style="text-align: left; padding-left: 0;"><h2>Localização</h2></div>
+        
+        <a href="https://share.google/ArSu1OENpNqT60OE6" target="_blank" style="text-decoration: none; display: block; position: relative;">
+            <iframe class="map-frame" src="https://maps.google.com/maps?q=R.%20Jacinto%20Fiorelini,%2011,%20Jardim%20Itapeva,%20Mau%C3%A1%20-%20SP&hl=pt-BR&z=16&output=embed" allowfullscreen="" loading="lazy" style="pointer-events: none;"></iframe>
+        </a>
+        
+        <p style="font-size: 0.9rem; margin-top: 10px;">
+            <a href="https://share.google/ArSu1OENpNqT60OE6" target="_blank" style="color: var(--branco); text-decoration: none;">
+                <i class="fa-solid fa-location-dot" style="color: var(--amarelo-lima); margin-right: 8px;"></i> Rua Jacinto Fiorelini, 11 - Mauá, SP
+            </a>
+        </p>
+        
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100083235105665" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/planejaferro/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5511986548759" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:comercial@planejaferro.com.br"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <p class="footer-info">PLANEJA FERRO © 2026 | Todos os direitos reservados.</p>
+        
+        <a href="https://www.instagram.com/seusiteperfeito" target="_blank" class="signature">
+            Site criado por: <i class="fab fa-instagram"></i> @seusiteperfeito
+        </a>
+    </footer>
+
+    <div id="videoModal">
+        <button class="close-modal-btn" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
+        <div class="modal-nav">
+            <button class="nav-btn" onclick="prevVideo()"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" onclick="nextVideo()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <video id="modalVideoPlayer" controls playsinline></video>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    
+    <script>
+        function toggleMenu() { 
+            const menu = document.getElementById('navMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const icon = document.getElementById('menuIcon');
+            const i = icon.querySelector('i');
+
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            icon.classList.toggle('active');
+
+            if(menu.classList.contains('active')) {
+                i.classList.remove('fa-bars-staggered'); i.classList.add('fa-xmark');
+            } else {
+                i.classList.remove('fa-xmark'); i.classList.add('fa-bars-staggered');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            new Splide('#galeria1', { type: 'loop', padding: '12%', gap: '15px', arrows: false, pagination: false, autoplay: true }).mount();
+            new Splide('#galeria-estrutura', { type: 'loop', padding: '12%', gap: '15px', arrows: false, pagination: false, autoplay: true, interval: 3500 }).mount();
+            const lightbox = GLightbox({ touchNavigation: true, loop: true });
+        });
+
+        // Atualizado com os novos arrays de vídeos para as seções de Portões e NR12
+        const galleries = {
+            portfolio: ['nossosprojetos1.mp4', 'nossosprojetos2.mp4', 'nossosprojetos3.mp4'],
+            fabrica: ['nossaestrutura1.mp4', 'nossaestrutura2.mp4'],
+            portoes: ['portoes1.mp4', 'portoes2.mp4', 'portoes3.mp4', 'portoes4.mp4'],
+            nr12: ['nr1.mp4', 'nr2.mp4', 'nr3.mp4', 'nr4.mp4', 'nr5.mp4', 'nr6.mp4']
+        };
+        
+        let currentGallery = 'portfolio';
+        let currentIndex = 0;
+        const videoModal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalVideoPlayer');
+
+        function openVideoModal(index, galleryName) {
+            currentGallery = galleryName || 'portfolio';
+            currentIndex = index;
+            loadVideo(currentIndex);
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function loadVideo(index) {
+            const videoList = galleries[currentGallery];
+            modalPlayer.src = videoList[index];
+            modalPlayer.muted = false;
+            modalPlayer.play();
+        }
+
+        function nextVideo() { 
+            const videoList = galleries[currentGallery];
+            currentIndex = (currentIndex + 1) % videoList.length; loadVideo(currentIndex); 
+        }
+        
+        function prevVideo() { 
+            const videoList = galleries[currentGallery];
+            currentIndex = (currentIndex - 1 + videoList.length) % videoList.length; loadVideo(currentIndex); 
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            modalPlayer.pause(); modalPlayer.src = '';
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>
