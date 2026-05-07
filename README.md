@@ -20,6 +20,6 @@ A interface foi estruturada sob o conceito "Industrial Premium". A paleta de cor
 * JavaScript
 
 ## 👨‍💻 Desenvolvedor
-Desenvolvido por **John E. Nunes da Fonseca** — **@seusiteperfeito**.
+Desenvolvido por **John E. Nunes da Fonseca** — **@genebrastudio**.
 
 > **Nota de Desenvolvimento:** Este projeto foi construído através de um fluxo de trabalho dinâmico e multiplataforma. A estrutura foi desenvolvida priorizando a agilidade, integrando ferramentas de desenvolvimento móvel e desktop, garantindo um resultado final otimizado, de alta performance e totalmente responsivo.
