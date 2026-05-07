@@ -1,25 +1,71 @@
-# Planeja Ferro - Landing Page Premium
+# Planeja Ferro — Landing Page de Alta Performance
 
-## 📌 Sobre o Projeto
-O projeto **Planeja Ferro** é uma landing page moderna e responsiva, desenvolvida com foco em alta performance e design sofisticado. O objetivo deste projeto foi criar uma presença digital marcante para o setor industrial, combinando uma estética minimalista com uma usabilidade impecável.
+## 🌐 Projeto Entregue
+A landing page foi desenvolvida e entregue ao cliente como uma solução completa de presença digital.
 
-## 🎨 Identidade Visual e UI/UX
-A interface foi estruturada sob o conceito "Industrial Premium". A paleta de cores foi cuidadosamente selecionada para transmitir força, exclusividade e modernidade:
-* **Dark Petroleum:** Trazendo a sobriedade e a elegância do setor corporativo.
-* **Dourado (Gold):** Aplicado para gerar um toque premium e de alto valor agregado.
-* **Verde Limão (Lime Green):** Utilizado estrategicamente para pontos de destaque, botões de ação (Call to Actions) e contraste moderno.
+🔗 https://www.planejaferro.com.br
 
-## 🚀 Principais Funcionalidades
-* **Mobile-First:** Estrutura otimizada primeiramente para dispositivos móveis, garantindo a melhor experiência na palma da mão.
-* **Design Minimalista e Brutalista:** Interface limpa, focada na conversão e na apresentação direta dos serviços, sem poluição visual.
-* **Alta Performance:** Estruturação de código limpa para carregamento rápido e navegação fluida.
+---
+
+## 📌 Visão do Projeto
+A Planeja Ferro foi construída como uma presença digital de alta autoridade para o setor industrial, com foco em posicionamento de marca, clareza de comunicação e apresentação comercial dos serviços.
+
+O objetivo foi elevar a percepção da empresa no ambiente digital, transmitindo modernidade, confiança e profissionalismo.
+
+---
+
+## 🎯 Estratégia de Design e Conversão
+O layout foi desenvolvido com foco em hierarquia visual e condução da atenção do usuário, priorizando:
+
+- Clareza na proposta de valor
+- Redução de ruído visual
+- Destaque para ações de contato (CTA)
+- Estrutura otimizada para dispositivos móveis
+
+A estética segue uma linha **Industrial Premium**, combinando sobriedade corporativa com elementos visuais de alto contraste para reforço de autoridade.
+
+---
+
+## ⚡ Experiência e Performance
+- Arquitetura Mobile-First
+- Código leve e otimizado para carregamento rápido
+- Estrutura modular de assets
+- Navegação fluida e intuitiva
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
-* HTML5
-* CSS3
-* JavaScript
+- HTML5  
+- CSS3  
+- JavaScript Vanilla  
+
+---
+
+## 📦 Estrutura do Projeto
+
+assets/
+ ├── img/
+ └── video/
+
+css/
+ └── style.css
+
+index.html
+
+---
+
+## 🚀 Contexto de Entrega
+Projeto desenvolvido como entrega real para cliente, com foco em aplicação prática, performance e compatibilidade com ambiente de hospedagem comercial.
+
+Inclui publicação em domínio próprio e estrutura pronta para uso em produção.
+
+---
 
 ## 👨‍💻 Desenvolvedor
-Desenvolvido por **John E. Nunes da Fonseca** — **@genebrastudio**
+**John E. Nunes da Fonseca**  
+@genebrastudio
 
-> **Nota de Desenvolvimento:** Este projeto foi construído através de um fluxo de trabalho dinâmico e multiplataforma. A estrutura foi desenvolvida priorizando a agilidade, integrando ferramentas de desenvolvimento móvel e desktop, garantindo um resultado final otimizado, de alta performance e totalmente responsivo.
+---
+
+## 📌 Observação
+Projeto finalizado e entregue, estruturado com foco em performance, escalabilidade e apresentação profissional em padrão de landing pages modernas orientadas a conversão.
